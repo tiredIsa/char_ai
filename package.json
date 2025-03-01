@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "workspaces": [
-    "packages/*"
+    "packages/frontend",
+    "packages/backend"
   ],
   "main": "index.js",
   "scripts": {

@@ -10,7 +10,10 @@ import router from './router'
 
 const app = createApp(App)
 
-axios.defaults.baseURL = 'https://charapi.fxck.ru'
+import { config } from 'dotenv'
+config()
+//TODO понять почему не работает в dockploy
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
 
 app.use(createPinia())
 app.use(router)
