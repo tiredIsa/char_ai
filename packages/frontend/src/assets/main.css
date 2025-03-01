@@ -5,3 +5,23 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+::-webkit-scrollbar {
+  width: 0.4rem; /* Ширина скроллбара */
+  height: 0.4rem; /* Высота скроллбара (если есть горизонтальный) */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3e3e3e; /* Серый цвет самого скроллбара */
+  border-radius: 3px; /* Скругление углов (по желанию) */
+  border: none; /* Убирает обводку (если есть) */
+  transition: background-color 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #363636; /* Более темный серый при наведении (по желанию) */
+}

@@ -8,10 +8,9 @@ import axios from 'axios'
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
 
-//TODO я в рот это все ебал честн
-axios.defaults.baseURL = 'https://charapi.fxck.ru'
+const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)

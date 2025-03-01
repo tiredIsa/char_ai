@@ -11,7 +11,7 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 3001;
 const NODE_ENV = process.env.NODE_ENV || "development";
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",") || ["http://localhost:3000"];
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",") || ["http://localhost:3000", "http://localhost:5173"];
 
 const logger = winston.createLogger({
   level: NODE_ENV === "development" ? "debug" : "info",
