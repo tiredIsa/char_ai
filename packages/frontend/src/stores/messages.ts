@@ -60,7 +60,7 @@ export const useDummyMessages = defineStore('dummyMessages', {
     async resendLastMessage() {
       if (this.messages.length > 1 && this.messages[this.messages.length - 1].role === 'user') {
         const message = this.messages[this.messages.length - 1].content
-        this.messages.slice(-1)
+        this.messages.pop()
         return this.sendMessage(message)
       } else {
         return false
