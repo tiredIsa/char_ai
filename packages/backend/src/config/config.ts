@@ -2,8 +2,8 @@ export default {
   port: process.env.PORT || 3000,
   aiModel: {
     apiKey: process.env.OPEN_ROUTER_APIKEY,
-    endpoint: "https://openrouter.ai/api/v1/chat/completions",
-    model: "google/gemini-2.0-flash-lite-preview-02-05:free", //qwen/qwen2.5-vl-72b-instruct:free
+    endpoint: "https://api.proxyapi.ru/google/v1/models/gemini-2.0-flash:generateContent",
+    //model: "google/gemini-2.0-flash-lite-preview-02-05:free", //qwen/qwen2.5-vl-72b-instruct:free
     basePrompt: `
 **CHARACTER IMMERSION DIRECTIVE**
 

@@ -5,7 +5,6 @@ import rateLimit from "axios-rate-limit";
 interface AIModelConfig {
   apiKey?: string;
   endpoint: string;
-  model: string;
   basePrompt: string;
 }
 
@@ -14,11 +13,11 @@ const http = rateLimit(axios.create(), { maxRequests: 10, perMilliseconds: 10000
 export const getAIResponse = async (messages: [{ role: string; content: string }], config: AIModelConfig): Promise<string> => {
   try {
     const payload = {
-      model: config.model,
-      messages: [
+      contents: [
         {
-          role: "system",
-          content: config.basePrompt,
+          role: "user",
+          parts: [{ text: config.basePrompt }],
+          //      "contents": [{"role": "user","parts": [{"text": "Say this is a test!"}]}]
         },
         ...messages,
       ],
@@ -35,8 +34,8 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
       headers: headers,
     });
 
-    if (response.status === 200 && response.data && response.data.choices && response.data.choices.length > 0) {
-      return response.data.choices[0].message.content;
+    if (response.status === 200 && response.data && response.data.candidates && response.data.candidates.length > 0) {
+      return response.data.candidates[0].content.parts[0].text;
     } else {
       console.error("Unexpected response from AI model:", response.data);
       throw new Error("Unexpected response from AI model");

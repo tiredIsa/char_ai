@@ -147,7 +147,7 @@ onBeforeRouteLeave(() => {
             <div
               class="max-w-xs sm:max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 bg-zinc-800 text-zinc-200 rounded bg-zinc-700"
               :class="{ '-ml-3': message?.role !== 'user', '-mr-3': message?.role === 'user' }">
-              <p>{{ message?.content }}</p>
+              <p>{{ message?.parts[0].text }}</p>
             </div>
           </div>
         </div>
