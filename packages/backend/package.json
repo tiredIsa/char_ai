@@ -13,8 +13,17 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "dependencies": {},
+  "dependencies": {
+    "axios-rate-limit": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "winston": "^3.17.0"
+  },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/helmet": "^0.0.48",
     "@types/node": "^22.13.6",
     "typescript": "^5.8.2"
   }

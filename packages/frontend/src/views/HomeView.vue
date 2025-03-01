@@ -147,7 +147,7 @@ function scrollToBottom() {
 
 
     <!-- Форма ввода -->
-    <div class="p-4 max-w-2xl w-full">
+    <div class="p-4 max-w-2xl w-full ">
       <div class="flex items-center space-x-2">
         <input v-model="newMessage" type="text" placeholder="Напишите сообщение..."
           class="w-full px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 focus:outline-none "
@@ -161,6 +161,8 @@ function scrollToBottom() {
           </svg>
         </button>
       </div>
+      <span class="text-zinc-100 pt-3 text-xs w-full flex flex-row justify-center">Это ИИ, а не реальный человек.
+        Рассматривай все что он говорит как вымысел.</span>
     </div>
   </div>
 </template>

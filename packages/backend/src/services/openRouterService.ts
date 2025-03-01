@@ -1,5 +1,6 @@
 // aiService.ts
 import axios from "axios";
+import rateLimit from "axios-rate-limit";
 
 interface AIModelConfig {
   apiKey?: string;
@@ -7,6 +8,8 @@ interface AIModelConfig {
   model: string;
   basePrompt: string;
 }
+
+const http = rateLimit(axios.create(), { maxRequests: 10, perMilliseconds: 10000 });
 
 export const getAIResponse = async (messages: [{ role: string; content: string }], config: AIModelConfig): Promise<string> => {
   try {
@@ -28,7 +31,7 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
       headers["Authorization"] = `Bearer ${config.apiKey}`;
     }
 
-    const response = await axios.post(config.endpoint, payload, {
+    const response = await http.post(config.endpoint, payload, {
       headers: headers,
     });
 
