@@ -1,0 +1,28 @@
+{
+  "name": "char",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nx run-many --target=dev",
+    "start": "npx nx run-many --target=start",
+    "build": "nx run-many --target=build --projects=@char/backend,@char/frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "axios": "^1.8.1",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nx": "20.0.3"
+  }
+}
