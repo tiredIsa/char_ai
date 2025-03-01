@@ -60,7 +60,7 @@ function scrollToBottom() {
 </script>
 
 <template>
-  <div class="flex flex-col h-screen bg-zinc-950 items-center w-full">
+  <div class="flex flex-col h-dvh bg-zinc-950 items-center w-full">
     <!-- Заголовок чата -->
 
     <!-- Область сообщений -->
