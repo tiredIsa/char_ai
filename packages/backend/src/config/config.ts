@@ -1,5 +1,5 @@
-import { config } from "dotenv";
-config();
+console.log(process.env.OPEN_ROUTER_APIKEY);
+console.log(process.env);
 
 export default {
   port: process.env.PORT || 3000,
