@@ -10,7 +10,8 @@ import router from './router'
 
 const app = createApp(App)
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL
+//TODO я в рот это все ебал честн
+axios.defaults.baseURL = 'https://charapi.fxck.ru'
 
 app.use(createPinia())
 app.use(router)
