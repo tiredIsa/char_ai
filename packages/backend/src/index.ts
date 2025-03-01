@@ -43,6 +43,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+app.set("trust proxy", true);
+
 const limiter = rateLimit({
   windowMs: 60 * 1000,
   max: 100,
