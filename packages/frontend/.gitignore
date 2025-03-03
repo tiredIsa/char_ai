@@ -29,7 +29,7 @@ coverage
 
 *.tsbuildinfo
 
-
+/dev-dist/
 /app/
 *.gradle
 gradle.*

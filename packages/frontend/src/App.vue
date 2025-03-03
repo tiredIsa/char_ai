@@ -6,25 +6,26 @@ import { onBeforeMount } from 'vue';
 
 const app = useAppStore()
 
-
 import { onMounted } from 'vue';
-
-import { invoke } from '@tauri-apps/api/core';
 import { ref } from 'vue';
+let invoke: any;
+
+
+if (app.isTauri) {
+  import('@tauri-apps/api/core').then((module) => {
+    invoke = module.invoke
+  });
+
+}
 
 onBeforeMount(async () => {
   app.isTauri = '__TAURI_INTERNALS__' in window
   app.isMobile = navigator.maxTouchPoints > 0
 })
 
-
-
-
-
-
-
 const safeAreaStyles = ref({});
 async function requestInsets() {
+  if (!invoke) return
   try {
     const insets = await invoke('get_safe_area_insets') as { top: number; right: number; bottom: number; left: number };
     if (!insets) return
@@ -53,12 +54,3 @@ import '@material/web/button/filled-tonal-button.js';
     <RouterView />
   </main>
 </template>
-
-
-<style>
-#app {
-  /* padding-top: var(--safe-area-inset-top); */
-  /* padding-bottom: calc(var(--safe-area-inset-bottom) * 1.5); */
-
-}
-</style>
