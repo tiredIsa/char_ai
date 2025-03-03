@@ -1,9 +1,23 @@
-export default {
-  port: process.env.PORT || 3000,
+export interface IModelsConfig {
+  apiKeys: {
+    proxyapi: string;
+    google: string;
+  };
+  basePrompt: string;
+}
+
+export interface IConfig {
+  port: number;
+  aiModel: IModelsConfig;
+}
+
+const config: IConfig = {
+  port: 3000,
   aiModel: {
-    apiKey: process.env.OPEN_ROUTER_APIKEY,
-    endpoint: "https://api.proxyapi.ru/google/v1/models/gemini-2.0-flash:generateContent",
-    //model: "google/gemini-2.0-flash-lite-preview-02-05:free", //qwen/qwen2.5-vl-72b-instruct:free
+    apiKeys: {
+      proxyapi: process.env.PROXY_API_APIKEY as string,
+      google: process.env.GOOGLE_AI_API_KEY as string,
+    },
     basePrompt: `
 **CHARACTER IMMERSION DIRECTIVE**
 
@@ -43,3 +57,5 @@ This system is designed to create the most authentic and cohesive embodiment of 
     `,
   },
 };
+
+export default config;

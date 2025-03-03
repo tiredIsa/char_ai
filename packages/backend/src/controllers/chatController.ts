@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import * as aiService from "../services/openRouterService";
+import * as proxyApi from "../services/openRouterService";
+import * as googleAiStudio from "../services/googleAiStudio";
 import config from "../config/config"; // Импортируем конфигурацию
 
 export const sendMessage = async (req: Request, res: Response) => {
@@ -12,7 +13,7 @@ export const sendMessage = async (req: Request, res: Response) => {
     }
 
     // Вызываем сервис для взаимодействия с AI-моделью
-    const aiResponse = await aiService.getAIResponse(userMessages, config.aiModel);
+    const aiResponse = await googleAiStudio.getAIResponse(userMessages, config.aiModel);
 
     // Отправляем ответ пользователю
     res.status(200).json({ reply: aiResponse });

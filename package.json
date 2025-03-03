@@ -2,6 +2,7 @@
   "name": "char",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "workspaces": [
     "packages/frontend",
     "packages/backend"

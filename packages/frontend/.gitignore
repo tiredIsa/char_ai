@@ -38,3 +38,6 @@ app-release-*
 gradlew*
 manifest-checksum.txt
 /gradle/
+
+
+/src-tauri/gen/android/keystore.properties

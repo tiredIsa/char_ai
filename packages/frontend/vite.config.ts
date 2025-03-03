@@ -8,6 +8,14 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    watch: {
+      // 3. tell vite to ignore watching `src-tauri`
+      ignored: ['**/src-tauri/**'],
+    },
+  },
   plugins: [
     vue(),
     vueDevTools(),
@@ -49,9 +57,12 @@ export default defineConfig({
       },
     }),
   ],
+  clearScreen: false,
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),
     },
   },
 })

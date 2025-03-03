@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick, watch } from 'vue';
-import { useDummyMessages } from '../stores/messages'
+import { useDummyMessages } from '../../stores/messages'
 import { onClickOutside } from '@vueuse/core'
 import { onBeforeRouteLeave } from 'vue-router';
 
@@ -59,70 +59,10 @@ function scrollToBottom() {
   });
 }
 
-const openSideBar = ref(false)
-
-onClickOutside(sideBar, event => {
-  openSideBar.value = false
-})
-
-
-onBeforeRouteLeave(() => {
-  if (openSideBar.value) {
-    openSideBar.value = false
-    return false
-  }
-
-})
-
 </script>
 
 <template>
-  <div class="absolute top-0 left-0 w-full h-20 flex xl:hidden backdrop-blur-[20px] flex flex-row px-5 items-center"
-    style="background-color: rgba(9, 9, 11, .8);">
-    <button @click="openSideBar = true">
-      <svg viewBox="0 0 24 24" class="h-6">
-        <path fill="#fff" fill-rule="evenodd" clip-rule="evenodd"
-          d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6ZM2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12ZM2 18C2 17.4477 2.44772 17 3 17H11C11.5523 17 12 17.4477 12 18C12 18.5523 11.5523 19 11 19H3C2.44772 19 2 18.5523 2 18Z">
-        </path>
-      </svg>
-    </button>
-    <div class="ml-10 flex flex-row">
-      <img src="/logo.webp" alt="" class="w-[40px] h-[40px] rounded-full">
-      <div class="flex flex-col ml-2">
-        <h1 class="text-white ">char.fxck</h1>
-        <span class="text-zinc-400 text-xs">prod. isa</span>
-      </div>
-    </div>
-    <button class="border border-zinc-600 rounded-full p-2 ml-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6" viewBox="0 0 24 24">
-        <path fill="#888888"
-          d="M6 14q-.825 0-1.412-.587T4 12t.588-1.412T6 10t1.413.588T8 12t-.587 1.413T6 14m6 0q-.825 0-1.412-.587T10 12t.588-1.412T12 10t1.413.588T14 12t-.587 1.413T12 14m6 0q-.825 0-1.412-.587T16 12t.588-1.412T18 10t1.413.588T20 12t-.587 1.413T18 14" />
-      </svg>
-    </button>
-  </div>
-
-
-  <div ref="sideBar"
-    class="absolute xl:hidden top-0 left-0 w-64 bg-zinc-950 h-dvh flex flex-col px-5 py-5 border-r border-zinc-600"
-    :class="openSideBar ? 'sidebar-open' : 'sidebar-close'">
-    <div class="px-5 py-2">
-      <div class="text-white text-2xl font-medium">Char.Fxck</div>
-    </div>
-    <div class="grow">
-    </div>
-    <div class=" text-zinc-400 pt-5 mb-4 border-t border-zinc-600 flex flex-col justify-end">
-      <div class="flex flex-row items-center ">
-        <img src="/placeholder_avatar.webp" alt="" class="w-10 rounded-full">
-        <h1 class="text-white ml-4 text-xs">Пользователь</h1>
-      </div>
-    </div>
-  </div>
-
   <div class="flex flex-col h-dvh bg-zinc-950 items-center w-full">
-
-
-
-
     <!-- Область сообщений -->
     <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950 max-w-2xl w-full " ref="messagesContainer">
       <div class="flex flex-col items-center justify-center mt-20 mb-10">
@@ -230,35 +170,6 @@ onBeforeRouteLeave(() => {
 </template>
 
 <style>
-.sidebar-open {
-  animation: slide-in-left 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-.sidebar-close {
-  animation: slide-out-left 0.2s cubic-bezier(0.550, 0.085, 0.680, 0.230) both;
-}
-
-@keyframes slide-out-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-500px);
-  }
-
-}
-
-@keyframes slide-in-left {
-  0% {
-    transform: translateX(-500px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
 ::-webkit-scrollbar {
   width: 4px;
 }

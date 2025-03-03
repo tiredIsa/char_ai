@@ -1,16 +1,11 @@
 // aiService.ts
 import axios from "axios";
 import rateLimit from "axios-rate-limit";
-
-interface AIModelConfig {
-  apiKey?: string;
-  endpoint: string;
-  basePrompt: string;
-}
+import { IModelsConfig } from "../config/config";
 
 const http = rateLimit(axios.create(), { maxRequests: 10, perMilliseconds: 10000 });
 
-export const getAIResponse = async (messages: [{ role: string; content: string }], config: AIModelConfig): Promise<string> => {
+export const getAIResponse = async (messages: [{ role: string; content: string }], config: IModelsConfig): Promise<string> => {
   try {
     const payload = {
       contents: [
@@ -26,11 +21,11 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
-    if (config.apiKey) {
-      headers["Authorization"] = `Bearer ${config.apiKey}`;
+    if (config.apiKeys.proxyapi) {
+      headers["Authorization"] = `Bearer ${config.apiKeys.proxyapi}`;
     }
 
-    const response = await http.post(config.endpoint, payload, {
+    const response = await http.post("https://api.proxyapi.ru/google/v1/models/gemini-2.0-flash:generateContent", payload, {
       headers: headers,
     });
 

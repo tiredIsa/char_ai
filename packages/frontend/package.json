@@ -13,10 +13,17 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "tauri:android:dev": "tauri android dev",
+    "tauri:android:build": "tauri android build"
   },
   "dependencies": {
+    "@material/web": "^2.2.0",
     "@tailwindcss/vite": "^4.0.9",
+    "@tauri-apps/api": "^2.3.0",
     "@vueuse/core": "^12.7.0",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.0.9",
@@ -24,6 +31,7 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.3.1",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",
