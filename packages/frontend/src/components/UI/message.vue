@@ -211,7 +211,6 @@ watch(isOverlayVisible, (newValue) => {
     }
 }
 
-
 .dropdown-enter-active {
     animation: dropdown-appear 0.2s;
 }
