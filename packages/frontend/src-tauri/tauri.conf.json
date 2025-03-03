@@ -13,10 +13,9 @@
     "windows": [
       {
         "title": "char.fxck",
-        "width": 600,
-        "height": 800,
-        "fullscreen": true,
-        "decorations": true
+
+        "fullscreen": false,
+        "decorations": false
       }
     ],
     "security": {

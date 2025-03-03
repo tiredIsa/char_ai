@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick, watch } from 'vue';
-import { useDummyMessages } from '../../stores/messages'
-import { onClickOutside } from '@vueuse/core'
-import { onBeforeRouteLeave } from 'vue-router';
-
+import { ref, computed, nextTick, watch } from 'vue';
+import { useDummyMessages, type Message } from '../../stores/messages'
 
 const newMessage = ref('');
-const messages = computed(() => useDummyMessages().messages.slice(1));
+const messages = computed(() => useDummyMessages().markdownMessages);
 const messagesContainer = ref<HTMLElement | null>(null);
-
-const sideBar = ref<HTMLElement | null>(null)
 
 const aiTyping = ref(false)
 const chatError = ref(false)
@@ -87,7 +82,7 @@ function scrollToBottom() {
             <div
               class="max-w-xs sm:max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 bg-zinc-800 text-zinc-200 rounded bg-zinc-700"
               :class="{ '-ml-3': message?.role !== 'user', '-mr-3': message?.role === 'user' }">
-              <p>{{ message?.parts[0].text }}</p>
+              <p class="w-full break-words overflow-hidden" v-html="message?.parts[0].text"></p>
             </div>
           </div>
         </div>

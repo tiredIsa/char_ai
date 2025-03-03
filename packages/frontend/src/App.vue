@@ -56,9 +56,9 @@ import '@material/web/button/filled-tonal-button.js';
 
 
 <style>
-/* body {
-  padding-top: var(--safe-area-inset-top);
-  padding-bottom: var(--safe-area-inset-bottom);
+#app {
+  /* padding-top: var(--safe-area-inset-top); */
+  /* padding-bottom: calc(var(--safe-area-inset-bottom) * 1.5); */
 
-} */
+}
 </style>

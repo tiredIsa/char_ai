@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { marked } from 'marked'
 
-type Message = {
+export type Message = {
   role: string
   parts: [{ text: string }]
 }
@@ -39,6 +40,22 @@ export const useDummyMessages = defineStore('dummyMessages', {
       ],
       charName: 'Юна',
     }
+  },
+  getters: {
+    markdownMessages: (state) => {
+      return state.messages
+        .map((message) => {
+          return {
+            role: message.role,
+            parts: [
+              {
+                text: marked(message.parts[0].text),
+              },
+            ],
+          }
+        })
+        .slice(1)
+    },
   },
   actions: {
     async sendMessage(message: string) {
