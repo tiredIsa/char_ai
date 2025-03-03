@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, nextTick, watch } from 'vue';
-import { useDummyMessages } from '../../stores/messages'
+import { useDummyMessages, type Message } from '../../stores/messages'
 import { onClickOutside } from '@vueuse/core'
 import { onBeforeRouteLeave } from 'vue-router';
 import { useTextareaAutosize } from '@vueuse/core';
-import message from '@/components/UI/message.vue';
+import MessageComponent from '@/components/UI/message.vue';
 
 const { textarea, input } = useTextareaAutosize()
 
@@ -16,10 +16,6 @@ const sideBar = ref<HTMLElement | null>(null)
 
 const aiTyping = ref(false)
 const chatError = ref(false)
-
-const clickCallback = (text: string) => {
-  alert(`${text}`)
-}
 
 
 async function sendMessage() {
@@ -130,8 +126,8 @@ document.addEventListener('selectstart', (event) => {
     <!-- Область сообщений -->
     <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950 max-w-2xl w-full " ref="messagesContainer">
       <div class="mt-20"></div>
-      <message v-for="(message, index) in messages" :key="index" :message="message" />
-      <message v-if="aiTyping" :slotMode="true">
+      <MessageComponent v-for="(message, index) in messages" :key="index" :message="(message as Message)" />
+      <MessageComponent v-if="aiTyping" :slotMode="true">
         <div
           class="max-w-xs sm:max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 bg-zinc-800 text-zinc-200 rounded bg-zinc-700 -ml-2">
           <p>
@@ -142,9 +138,9 @@ document.addEventListener('selectstart', (event) => {
             </svg>
           </p>
         </div>
-      </message>
+      </MessageComponent>
 
-      <message v-if="chatError" :slotMode="true">
+      <MessageComponent v-if="chatError" :slotMode="true">
         <div @click="resendMessgae"
           class="max-w-xs sm:max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 bg-zinc-800 text-zinc-200 rounded bg-zinc-700 cursor-pointer hover:bg-zinc-600 duration-200 -ml-2">
           <p>
@@ -154,7 +150,7 @@ document.addEventListener('selectstart', (event) => {
             </svg>
           </p>
         </div>
-      </message>
+      </MessageComponent>
     </div>
 
     <!-- Форма ввода -->

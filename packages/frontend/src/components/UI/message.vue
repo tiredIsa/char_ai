@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDummyMessages, type Message } from '@/stores/messages';
+import { useDummyMessages, type Message } from '../../stores/messages';
 import { watch } from 'vue';
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 
@@ -101,6 +101,7 @@ function handleCloseAllMenus(event: CustomEvent) {
 }
 
 onMounted(() => {
+    console.log('test')
     document.addEventListener('closeAllMenus', handleCloseAllMenus as EventListener);
     nextTick(() => {
         if (!document.getElementById('global-menu-overlay')) {
