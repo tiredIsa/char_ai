@@ -37,7 +37,6 @@ export const useDummyMessages = defineStore('dummyMessages', {
         {
           role: 'assistant',
           parts: [{ text: 'ヽ(･ω･ゞ)' }],
-          userRate: 'good',
         },
       ],
       charName: 'Юна',
