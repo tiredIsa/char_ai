@@ -6,32 +6,20 @@ import { onBeforeMount } from 'vue';
 
 const app = useAppStore()
 
-import { onMounted } from 'vue';
 import { watch } from 'vue';
 
 onBeforeMount(async () => {
   app.isTauri = '__TAURI_INTERNALS__' in window
   app.isMobile = navigator.maxTouchPoints > 0
 })
-onMounted(() => {
-  //idk work it or not xd
-  window.addEventListener('resize', () => {
-    const visualViewport = window.visualViewport;
-    if (visualViewport) {
-      document.body.style.height = `${visualViewport.height}px`;
-    }
-  });
-})
-
-const viewport = window.visualViewport;
 
 // Отслеживание изменений размера видимой области
-viewport?.addEventListener('resize', () => {
-  document.body.style.height = `${viewport.height}px`;
+window.visualViewport?.addEventListener('resize', () => {
+  document.body.style.height = `${window.visualViewport?.height || window.innerHeight}px`;
 });
 
-watch(() => viewport?.height, () => {
-  document.body.style.height = `${viewport?.height || window.innerHeight}px`;
+watch(() => window.visualViewport?.height, () => {
+  document.body.style.height = `${window.visualViewport?.height || window.innerHeight}px`;
 }, { immediate: true })
 
 </script>

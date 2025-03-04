@@ -88,6 +88,12 @@ document.addEventListener('selectstart', (event) => {
   event.preventDefault();
 });
 
+watch(() => window.visualViewport?.height, () => {
+  nextTick(() => {
+    scrollToBottom();
+  })
+})
+
 </script>
 
 <template>
