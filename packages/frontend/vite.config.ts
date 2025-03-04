@@ -22,13 +22,13 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      devOptions: { enabled: false },
+      devOptions: { enabled: true },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
         name: 'char.fxck',
         short_name: 'char.fxck',
         description: 'Создай своего персонажа в char.fxck',
-        theme_color: '#fff',
+        theme_color: '#000',
         background_color: '#000',
         icons: [
           {

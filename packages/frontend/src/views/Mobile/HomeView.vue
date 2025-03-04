@@ -122,7 +122,7 @@ document.addEventListener('selectstart', (event) => {
   </div>
 
 
-  <div class="flex flex-col h-dvh bg-zinc-950 items-center w-full">
+  <div class="flex flex-col h-full bg-zinc-950 items-center w-full">
     <!-- Область сообщений -->
     <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950 max-w-2xl w-full " ref="messagesContainer">
       <div class="mt-20"></div>

@@ -7,50 +7,36 @@ import { onBeforeMount } from 'vue';
 const app = useAppStore()
 
 import { onMounted } from 'vue';
-import { ref } from 'vue';
-let invoke: any;
-
-
-if (app.isTauri) {
-  import('@tauri-apps/api/core').then((module) => {
-    invoke = module.invoke
-  });
-
-}
+import { watch } from 'vue';
 
 onBeforeMount(async () => {
   app.isTauri = '__TAURI_INTERNALS__' in window
   app.isMobile = navigator.maxTouchPoints > 0
 })
-
-const safeAreaStyles = ref({});
-async function requestInsets() {
-  if (!invoke) return
-  try {
-    const insets = await invoke('get_safe_area_insets') as { top: number; right: number; bottom: number; left: number };
-    if (!insets) return
-    safeAreaStyles.value = insets;
-    const root = document.documentElement; // Получаем корневой элемент (<html>)
-    root.style.setProperty('--safe-area-inset-top', `${insets.top * 1.5}px`);
-    root.style.setProperty('--safe-area-inset-right', `${insets.right}px`);
-    root.style.setProperty('--safe-area-inset-bottom', `${insets.bottom}px`);
-    root.style.setProperty('--safe-area-inset-left', `${insets.left}px`);
-  } catch (error) {
-    console.error("Error fetching insets:", error);
-  }
-}
-
 onMounted(() => {
-  requestInsets();
+  //idk work it or not xd
+  window.addEventListener('resize', () => {
+    const visualViewport = window.visualViewport;
+    if (visualViewport) {
+      document.body.style.height = `${visualViewport.height}px`;
+    }
+  });
 })
 
+const viewport = window.visualViewport;
 
-import '@material/web/button/filled-tonal-button.js';
+// Отслеживание изменений размера видимой области
+viewport?.addEventListener('resize', () => {
+  document.body.style.height = `${viewport.height}px`;
+});
+
+watch(() => viewport?.height, () => {
+  document.body.style.height = `${viewport?.height || window.innerHeight}px`;
+}, { immediate: true })
 
 </script>
-
 <template>
-  <main>
+  <main class="h-full">
     <RouterView />
   </main>
 </template>
