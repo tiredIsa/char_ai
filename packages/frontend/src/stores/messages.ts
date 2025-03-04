@@ -5,6 +5,7 @@ import { marked } from 'marked'
 export type Message = {
   role: string
   parts: [{ text: string }]
+  userRate?: 'good' | 'bad'
 }
 
 interface State {
@@ -36,6 +37,7 @@ export const useDummyMessages = defineStore('dummyMessages', {
         {
           role: 'assistant',
           parts: [{ text: 'ヽ(･ω･ゞ)' }],
+          userRate: 'good',
         },
       ],
       charName: 'Юна',

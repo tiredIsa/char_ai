@@ -4,7 +4,7 @@ import { useDummyMessages, type Message } from '../../stores/messages'
 import { onClickOutside } from '@vueuse/core'
 import { onBeforeRouteLeave } from 'vue-router';
 import { useTextareaAutosize } from '@vueuse/core';
-import MessageComponent from '@/components/UI/message.vue';
+import MessageComponent from '@/components/UI/MobileMessage.vue';
 
 const { textarea, input } = useTextareaAutosize()
 
@@ -132,7 +132,7 @@ watch(() => window.visualViewport?.height, () => {
     <!-- Область сообщений -->
     <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950 max-w-2xl w-full " ref="messagesContainer">
       <div class="mt-20"></div>
-      <MessageComponent v-for="(message, index) in messages" :key="index" :message="(message as Message)" />
+      <MessageComponent v-for="(message, index) in messages" :key="index" :index="index + 1" />
       <MessageComponent v-if="aiTyping" :slotMode="true">
         <div
           class="max-w-xs sm:max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 bg-zinc-800 text-zinc-200 rounded bg-zinc-700 -ml-2">
