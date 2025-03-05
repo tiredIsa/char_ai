@@ -1557,7 +1557,7 @@
     lightningcss "^1.29.1"
     tailwindcss "4.0.9"
 
-"@tauri-apps/api@^2.3.0":
+"@tauri-apps/api@^2.0.0", "@tauri-apps/api@^2.3.0":
   version "2.3.0"
   resolved "https://registry.npmjs.org/@tauri-apps/api/-/api-2.3.0.tgz"
   integrity sha512-33Z+0lX2wgZbx1SPFfqvzI6su63hCBkbzv+5NexeYjIx7WA9htdOKoRR7Dh3dJyltqS5/J8vQFyybiRoaL0hlA==
@@ -1627,6 +1627,13 @@
     "@tauri-apps/cli-win32-arm64-msvc" "2.3.1"
     "@tauri-apps/cli-win32-ia32-msvc" "2.3.1"
     "@tauri-apps/cli-win32-x64-msvc" "2.3.1"
+
+"@tauri-apps/plugin-haptics@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/plugin-haptics/-/plugin-haptics-2.2.3.tgz#2a6abc16a07987b81ba517fc1b8ade403d7ab725"
+  integrity sha512-tHWAOR0TSOuWIdJ4Fh/4z+L8CvSfHdg5i7XfCqjErPu63PMf+2n856VIGcC6fjF29hf/vq+BiGApWt38n66Gvg==
+  dependencies:
+    "@tauri-apps/api" "^2.0.0"
 
 "@tsconfig/node22@^22.0.0":
   version "22.0.0"

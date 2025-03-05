@@ -24,6 +24,7 @@
     "@material/web": "^2.2.0",
     "@tailwindcss/vite": "^4.0.9",
     "@tauri-apps/api": "^2.3.0",
+    "@tauri-apps/plugin-haptics": "^2.2.3",
     "@vueuse/core": "^12.7.0",
     "http-proxy-agent": "^7.0.2",
     "https-proxy-agent": "^7.0.6",

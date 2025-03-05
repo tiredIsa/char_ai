@@ -13,7 +13,7 @@ export const sendMessage = async (req: Request, res: Response) => {
     }
 
     // Вызываем сервис для взаимодействия с AI-моделью
-    const aiResponse = await googleAiStudio.getAIResponse(userMessages, config.aiModel);
+    const aiResponse = await proxyApi.getAIResponse(userMessages, config.aiModel);
 
     // Отправляем ответ пользователю
     res.status(200).json({ reply: aiResponse });

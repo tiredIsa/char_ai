@@ -12,7 +12,6 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
         {
           role: "user",
           parts: [{ text: config.basePrompt }],
-          //      "contents": [{"role": "user","parts": [{"text": "Say this is a test!"}]}]
         },
         ...messages,
       ],

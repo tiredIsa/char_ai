@@ -3,6 +3,7 @@ import { useDummyMessages } from '../../stores/messages';
 import { ref, } from 'vue';
 import DropdownMenu from './MessageDropdown.vue';
 import { computed } from 'vue';
+import { Haptic } from '@/utils/haptic';
 
 const props = defineProps<{
     index?: number
@@ -64,8 +65,9 @@ const deleteMessage = () => {
     }, 300)
 }
 
-const handleMessageTap = (event: MouseEvent) => {
+const handleMessageTap = async (event: MouseEvent) => {
     if (props.slotMode) return;
+    Haptic.impact('soft')
     event.stopPropagation();
     menuPosition.value = { x: event.clientX, y: event.clientY };
     menuOpenDirection.value = determineMenuDirection(event.clientX);
@@ -76,7 +78,9 @@ const determineMenuDirection = (x: number) => {
     return x < windowWidth.value / 2 ? 'right' : 'left';
 }
 
-const handleMenuSelect = (option: { id: string }) => {
+const handleMenuSelect = async (option: { id: string }) => {
+    Haptic.selectionFeedback()
+
     switch (option.id) {
         case 'copy':
             copyToClipboard(message.value?.parts[0].text || '');

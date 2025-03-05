@@ -12,7 +12,6 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
         {
           role: "user",
           parts: [{ text: config.basePrompt }],
-          //      "contents": [{"role": "user","parts": [{"text": "Say this is a test!"}]}]
         },
         ...messages,
       ],
@@ -22,7 +21,7 @@ export const getAIResponse = async (messages: [{ role: string; content: string }
       "Content-Type": "application/json",
     };
 
-    const response = await http.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${config.apiKeys.google}`, payload, {
+    const response = await http.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${config.apiKeys.google}`, payload, {
       headers: headers,
     });
 

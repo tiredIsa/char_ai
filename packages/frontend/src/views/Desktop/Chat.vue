@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick, watch } from 'vue';
 import { useDummyMessages, type Message } from '../../stores/messages'
+import SideBar from '@/components/SideBar.vue';
 
 const newMessage = ref('');
 const messages = computed(() => useDummyMessages().markdownMessages);

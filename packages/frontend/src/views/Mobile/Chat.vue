@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, nextTick, watch } from 'vue';
 import { useDummyMessages, type Message } from '../../stores/messages'
-import { onClickOutside } from '@vueuse/core'
-import { onBeforeRouteLeave } from 'vue-router';
+
 import { useTextareaAutosize } from '@vueuse/core';
 import MessageComponent from '@/components/UI/MobileMessage.vue';
+import router from '@/router';
+import { Haptic } from '@/utils/haptic'
 
 const { textarea, input } = useTextareaAutosize()
 
 
 const messages = computed(() => useDummyMessages().markdownMessages);
 const messagesContainer = ref<HTMLElement | null>(null);
-
-const sideBar = ref<HTMLElement | null>(null)
 
 const aiTyping = ref(false)
 const chatError = ref(false)
@@ -21,6 +20,7 @@ const chatError = ref(false)
 async function sendMessage() {
   if (!input.value.trim() || aiTyping.value) return;
 
+  Haptic.impact('soft')
 
   const temp = input.value
   input.value = '';
@@ -63,21 +63,6 @@ function scrollToBottom() {
   });
 }
 
-const openSideBar = ref(false)
-
-onClickOutside(sideBar, event => {
-  openSideBar.value = false
-})
-
-
-onBeforeRouteLeave(() => {
-  if (openSideBar.value) {
-    openSideBar.value = false
-    return false
-  }
-
-})
-
 //block right click 
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
@@ -94,12 +79,16 @@ watch(() => window.visualViewport?.height, () => {
   })
 })
 
+const backButton = () => {
+  router.push({ name: 'home' })
+}
+
 </script>
 
 <template>
   <div class="absolute z-10 top-0 left-0 w-full h-12 backdrop-blur-[15px]">
     <div class="h-12 w-full flex flex-row px-3 items-center" style="background-color: rgba(9, 9, 11, .8);">
-      <button>
+      <button @click="backButton">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
           <path fill="#888888"
             d="m7.825 13l4.9 4.9q.3.3.288.7t-.313.7q-.3.275-.7.288t-.7-.288l-6.6-6.6q-.15-.15-.213-.325T4.426 12t.063-.375t.212-.325l6.6-6.6q.275-.275.688-.275t.712.275q.3.3.3.713t-.3.712L7.825 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />

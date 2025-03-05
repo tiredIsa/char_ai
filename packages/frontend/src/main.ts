@@ -9,7 +9,7 @@ import axios from 'axios'
 import App from './App.vue'
 import router from './router'
 
-axios.defaults.baseURL = 'https://charapi.fxck.ru'
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
 // import.meta.env.VITE_BACKEND_URL
 //'https://charapi.fxck.ru'
 const app = createApp(App)

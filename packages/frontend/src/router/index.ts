@@ -12,8 +12,15 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: isMobile()
-        ? () => import('@/views/Mobile/HomeView.vue')
-        : () => import('@/views/Desktop/HomeView.vue'),
+        ? () => import('@/views/Mobile/Home.vue')
+        : () => import('@/views/Desktop/Home.vue'),
+    },
+    {
+      path: '/chat:id?',
+      name: 'chat',
+      component: isMobile()
+        ? () => import('@/views/Mobile/Chat.vue')
+        : () => import('@/views/Desktop/Chat.vue'),
     },
   ],
 })
