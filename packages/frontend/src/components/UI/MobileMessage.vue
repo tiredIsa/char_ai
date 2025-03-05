@@ -97,8 +97,6 @@ const handleMenuSelect = async (option: { id: string }) => {
     }
     emit('menuSelect', { option, message: message.value });
 }
-
-
 </script>
 
 <template>
